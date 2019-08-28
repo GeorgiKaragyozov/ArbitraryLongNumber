@@ -10,10 +10,11 @@ namespace ArbitraryLongNumber
     {
         static void Main(string[] args)
         {
-            ArbitraryLong x = new ArbitraryLong("-8636298269832141412634");
-            ArbitraryLong y = new ArbitraryLong("-981412684218");
-            Console.WriteLine(ArbitraryLong.Division(x, y));
+            ArbitraryLong x = new ArbitraryLong(-22);
+            ArbitraryLong y = new ArbitraryLong(11);
 
+            Console.WriteLine(ArbitraryLong.Addition(x, y)); 
+            
 
             Console.ReadKey();
         }
