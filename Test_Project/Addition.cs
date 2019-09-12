@@ -29,15 +29,6 @@ namespace Test_Project
             Assert.AreEqual(ArbitraryLong.Addition(x, y).ToString(), "14287");
         }
 
-        //[TestMethod]
-        //public void AdditionTest3()
-        //{
-        //    ArbitraryLong x = new ArbitraryLong(new List<byte> { 7, 3, 0, 9 });
-        //    ArbitraryLong y = new ArbitraryLong(new List<byte> { 6, 9, 7, 8 });
-
-        //    Assert.AreEqual(ArbitraryLong.Addition(x, y).ToString(), "14287");
-        //}
-
         [TestMethod]
         public void AdditionTest4()
         {

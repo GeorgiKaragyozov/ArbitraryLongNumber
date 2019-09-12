@@ -10,13 +10,7 @@ namespace ArbitraryLongNumber
     {
         static void Main(string[] args)
         {
-            ArbitraryLong x = new ArbitraryLong(-22);
-            ArbitraryLong y = new ArbitraryLong(11);
-
-            Console.WriteLine(ArbitraryLong.Addition(x, y)); 
-            
-
-            Console.ReadKey();
+           
         }
     }
 }

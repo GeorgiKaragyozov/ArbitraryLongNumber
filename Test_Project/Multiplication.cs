@@ -237,6 +237,5 @@ namespace Test_Project
 
             Assert.AreEqual(ArbitraryLong.Multiplication(x, y).ToString(), "0");
         }
-
     }
 }

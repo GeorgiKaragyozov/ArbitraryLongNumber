@@ -309,5 +309,14 @@ namespace Test_Project
 
             Assert.AreEqual(ArbitraryLong.Subtraction(x, y).ToString(), "11");
         }
+
+        [TestMethod]
+        public void SubtractionTest31()
+        {
+            ArbitraryLong x = new ArbitraryLong(new List<byte> { 1, 2 });
+            ArbitraryLong y = new ArbitraryLong(new List<byte> { 1, 2 });
+
+            Assert.AreEqual(ArbitraryLong.Subtraction(x, y).ToString(), "0");
+        }
     }
 }

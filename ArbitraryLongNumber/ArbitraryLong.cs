@@ -111,7 +111,6 @@ namespace ArbitraryLongNumber
                 }
             }
 
-            //number.Reverse();
             this.number = number;
         }
 
@@ -140,35 +139,7 @@ namespace ArbitraryLongNumber
             }
             else
             {
-                for (int i = 0; i < num1.number.Count; i++)
-                {
-                    if (num1.number[i] > num2.number[i])
-                    {
-                        return 1;
-                    }
-                    else if (num1.number[i] < num2.number[i])
-                    {
-                        return -1;
-                    }
-                }
-
-                return 1;
-            }
-        }
-
-        private static int CompareAbsDivision(ArbitraryLong num1, ArbitraryLong num2)
-        {
-            if (num1.number.Count > num2.number.Count)
-            {
-                return 1;
-            }
-            else if (num1.number.Count < num2.number.Count)
-            {
-                return -1;
-            }
-            else
-            {
-                for (int i = 0; i < num1.number.Count; i++)
+                for (int i = num1.number.Count - 1; i >= 0; i--)
                 {
                     if (num1.number[i] > num2.number[i])
                     {
@@ -471,7 +442,7 @@ namespace ArbitraryLongNumber
         /// <param name="num2"></param>
         /// <returns></returns>
         public static ArbitraryLong Subtraction(ArbitraryLong num1, ArbitraryLong num2)
-        {
+        {         
             if (num1.mark == Mark.Plus && num2.mark == Mark.Plus && CompareAbs(num1, num2) == 1)
             {
                 //+//Subtraction
@@ -638,21 +609,21 @@ namespace ArbitraryLongNumber
             return MultiplicationAbs(num1, num2);
         }
 
-        private static int DividePart(ArbitraryLong num1, ArbitraryLong num2, ref ArbitraryLong remainder)
+        private static byte DividePart(ArbitraryLong num1, ArbitraryLong num2, ref ArbitraryLong remainder)
         {
             if (num2.number[0] == 0 && num2.number.Count == 1)
             {
                 throw new DivideByZeroException();
             }
 
-            int result = 0;
+            byte result = 0;
 
-            while (num1.number[0] != 0 && num1.mark != Mark.Minus && CompareAbsDivision(num1, num2) == 1)
+            while (num1.number.ToString() != "0" && num1.mark != Mark.Minus && CompareAbs(num1, num2) == 1)
             {
                 num1 = ArbitraryLong.Subtraction(num1, num2);
                 if (num1.mark == Mark.Plus)
                     result++;
-            }
+            }          
 
             remainder = new ArbitraryLong(num1.number);
 
@@ -676,11 +647,12 @@ namespace ArbitraryLongNumber
 
             ArbitraryLong remainder = new ArbitraryLong("0");
 
-            result += DividePart(new ArbitraryLong(num1.number.Take(m).Reverse().ToList()), num2, ref remainder);
+            result += DividePart(new ArbitraryLong(num1.number.Skip(num1.number.Count - m).Take(m).ToList()), num2, ref remainder);
+            num1.number.Reverse();
 
             for (int i = m; i < n; i++)
-            {
-                ArbitraryLong newRemainder = new ArbitraryLong(TrimLeadingZeros(remainder.ToString() + num1.number[i]));//
+            {               
+                ArbitraryLong newRemainder = new ArbitraryLong(TrimLeadingZeros(remainder.ToString() + num1.number[i]));
                 result += DividePart(newRemainder, num2, ref remainder);
             }
 
@@ -714,6 +686,7 @@ namespace ArbitraryLongNumber
             {
                 ArbitraryLong result = DivisionAbs(num1, num2);
                 result.mark = Mark.Minus;
+
                 return result;
             }
         }
